@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: <pod_name>
+spec:
+  containers:
+    - name: <container_name>
+      image: gcr.io/<registry_name>/<image_name>:<tagname>
+  imagePullSecrets:
+      - name: your_secret_name
