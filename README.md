@@ -30,21 +30,15 @@ kubectl create secret docker-registry $SECRETNAME \
 # add the secret to your Kubernetes configuration
 
 SECRETNAME=varSecretName
+
 kubectl patch serviceaccount default \
   -p "{\"imagePullSecrets\": [{\"name\": \"$SECRETNAME\"}]}"
 
 
 # add your imagePullSecrets value, the YAML for the default service account looks like the following
-
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: default
-  namespace: default
-  selfLink: /api/v1/namespaces/default/serviceaccounts/default
-imagePullSecrets:
-  - name: your_secret_name
+kubectl apply -f add-imagepullpolicy.yaml
 
 
 # Or you can specify the imagePullSecrets value on individuals pods:
+kubectl apply -f add-imagepullpolicy-pod.yaml
 
