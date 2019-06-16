@@ -1,0 +1,1 @@
+# gcr-with-external-k8s
