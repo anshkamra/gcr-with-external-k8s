@@ -17,6 +17,7 @@ gcloud projects add-iam-policy-binding $PROJECT --member serviceAccount:$SA_EMAI
 
 
 #create the secret and specify the file that you just created
+
 SECRETNAME=varSecretName
 
 kubectl create secret docker-registry $SECRETNAME \
@@ -27,12 +28,14 @@ kubectl create secret docker-registry $SECRETNAME \
 
 
 #add the secret to your Kubernetes configuration
+
 SECRETNAME=varSecretName
 kubectl patch serviceaccount default \
   -p "{\"imagePullSecrets\": [{\"name\": \"$SECRETNAME\"}]}"
 
 
 #add your imagePullSecrets value, the YAML for the default service account looks like the following
+
 apiVersion: v1
 kind: ServiceAccount
 metadata:
